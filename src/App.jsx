@@ -1,3 +1,9 @@
+import ProjectsSidebar from "./components/ProjectsSidebar";
+
 export default function App(){
-  return <h1>Hello World</h1>
+  return  <>
+    <main className="h-screen my-8">
+      <ProjectsSidebar/>
+    </main>
+  </>
 }
