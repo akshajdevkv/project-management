@@ -52,9 +52,18 @@ export default function App(){
         }
       });
   }
+  function handleDeleteProject(){
+    setProjectsState((prevState)=>{
+      return {
+
+        selectedProjectId:undefined,
+        projects:prevState.projects.filter((project)=> project.id !== prevState.selectedProjectId)
+      }
+    })
+  }
   const selectedProject = projectsState.projects.find(project=>project.id===projectsState.selectedProjectId)
   console.log(projectsState.projects)
-  let content = <SelectedProjects project={selectedProject}/>;
+  let content = <SelectedProjects project={selectedProject} onDelete={handleDeleteProject} />;
   if(projectsState.selectedProjectId===null){
     content = <NewProject onAdd={handleAddProject} onCancel={handleCancelProject}/>
 
@@ -65,6 +74,7 @@ export default function App(){
     <main className="h-screen my-8 flex gap-8">
       <ProjectsSidebar onStartAddProject={handleStartAddProject} projects={projectsState.projects}
       onSelectProject={handleSelectProject}
+      selectedProjectId={projectsState.selectedProjectId}
       />
        {content}
     </main>
