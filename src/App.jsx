@@ -19,6 +19,15 @@ export default function App(){
     })
   }
 
+  function handleCancelProject(){
+    setProjectsState(prevState =>{
+      return {
+        ...prevState,
+        selectedProjectId:undefined,
+      }
+    })
+  }
+
   function handleAddProject(projectData){
       setProjectsState(prevState => {
         const newProject ={
@@ -36,7 +45,7 @@ export default function App(){
   console.log(projectsState.projects)
   let content;
   if(projectsState.selectedProjectId===null){
-    content = <NewProject onAdd={handleAddProject}/>
+    content = <NewProject onAdd={handleAddProject} onCancel={handleCancelProject}/>
 
   }else if(projectsState.selectedProjectId===undefined){
     content = <NoProjectSelected onStartAddProject={handleStartAddProject}/>
